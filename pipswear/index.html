@@ -43,7 +43,15 @@ function type8(){
     return names[rnd(0, names.length)] + '-' + verbs[rnd(0, verbs.length)] + 'ing orgasms!';
 }
 
-var chosenType = rnd(1,8);
+function type9(){
+    return verbs[rnd(0, verbs.length)] + ' a ' + personalObjects[rnd(0,personalObjects.length)] + ' where ' + names[rnd(0, names.length)] + ' don\'t shine!';
+}
+
+function type10(){
+    return verbs[rnd(0, verbs.length)] + 'ing orgasms of ' + names[rnd(0, names.length)];
+}
+
+var chosenType = rnd(1,10);
 document.write('<h1>' + window['type' + chosenType]().trim() + '</h1>');
 console.log(chosenType);
 
@@ -55,4 +63,6 @@ console.log(type5());
 console.log(type6());
 console.log(type7());
 console.log(type8());
+console.log(type9());
+console.log(type10());
 </script>
