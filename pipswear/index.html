@@ -48,10 +48,20 @@ function type9(){
 }
 
 function type10(){
-    return verbs[rnd(0, verbs.length)] + 'ing orgasms of ' + names[rnd(0, names.length)];
+    return verbs[rnd(0, verbs.length)] + 'ing orgasms of ' + names[rnd(0, names.length)] + '!';
 }
 
-var chosenType = rnd(1,10);
+function type11(){
+    // # Oh <verb, fuck> me with <name>'s <object>
+    return 'Oh ' + verbs[rnd(0, verbs.length)] + ' me with ' + names[rnd(0, names.length)] + '\s ' + personalObjects[rnd(0,personalObjects.length)] + '!';
+}
+
+function type12(){
+    // # Oh no. No. <name> <verb> me with <object>, no.
+    return 'Oh no. No. ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)] + ' me with ' + objects[rnd(0,objects.length)] + ', no.';
+}
+
+var chosenType = rnd(1,12);
 document.write('<h1>' + window['type' + chosenType]().trim() + '</h1>');
 console.log(chosenType);
 
@@ -65,4 +75,6 @@ console.log(type7());
 console.log(type8());
 console.log(type9());
 console.log(type10());
+console.log(type11());
+console.log(type12());
 </script>
