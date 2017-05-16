@@ -3,7 +3,7 @@ var amplifiers = ['', 'Great'];
 var names = ['Celestia', 'Luna', 'Godesses', 'Nightmare Moon'];
 var verbs = ['rape', 'fuck', 'sit on', 'lick', 'clop', 'spank', 'spin'];
 var objects = ['her horn', 'the moon', 'moon rocks', 'sunfire', 'her wings', 'a solar flare', 'a thousand star-devils', 'her forehooves'];
-var personalObjects = ['clit', 'moonheat', 'libido'];
+var personalObjects = ['clit', 'moonheat', 'libido', 'horn', 'wings', 'forehooves'];
 var quantifiers = ['a hoof-full of', ''];
 var adjectives = ['tidal', 'moaning', 'solar-flaring', 'solar-heated'];
 
@@ -12,7 +12,7 @@ function rnd(min, max) {
 }
 
 function type1(){
-	return amplifiers[rnd(0, amplifiers.length)] + ' ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)] + ' me with ' + objects[rnd(0,objects.length)];
+	return amplifiers[rnd(0, amplifiers.length)] + ' ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)] + ' me with ' + objects[rnd(0,objects.length)] + '.';
 }
 
 function type2(){
@@ -27,5 +27,32 @@ function type4(){
     return names[rnd(0, names.length)] + '\'s ' + adjectives[rnd(0, adjectives.length)] + ' ' + personalObjects[rnd(0,personalObjects.length)] + '!';
 }
 
-document.write('<h1>' + window['type' + rnd(1,4)]().trim() + '</h1>');
+function type5(){
+    return 'By the ' + personalObjects[rnd(0,personalObjects.length)] + ' of ' + names[rnd(0, names.length)] + '!';
+}
+
+function type6(){
+    return 'Holy hot sex with ' + names[rnd(0, names.length)] + '!';
+}
+
+function type7(){
+    return 'Sit on my ' + personalObjects[rnd(0,personalObjects.length)] + ' and ' + verbs[rnd(0, verbs.length)] + '.';
+}
+
+function type8(){
+    return names[rnd(0, names.length)] + '-' + verbs[rnd(0, verbs.length)] + 'ing orgasms!';
+}
+
+var chosenType = rnd(1,8);
+document.write('<h1>' + window['type' + chosenType]().trim() + '</h1>');
+console.log(chosenType);
+
+console.log(type1());
+console.log(type2());
+console.log(type3());
+console.log(type4());
+console.log(type5());
+console.log(type6());
+console.log(type7());
+console.log(type8());
 </script>
