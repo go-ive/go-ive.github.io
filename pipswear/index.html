@@ -1,1 +1,33 @@
-test
+<script>
+// type 1 <amplifier, optional> <name> <verb> me with <object>
+// type 2 Oh <verb> me with <object>
+// type 3 <verb> on <object> <and verb, optional>
+// type 4 By <object> of <object>
+
+var amplifiers = ['', 'Great'];
+var names = ['Celestia', 'Luna', 'Godesses', 'Nightmare Moon'];
+var verbs = ['rape', 'fuck', 'sit on'];
+var objects = ['her horn', 'the moon', 'moon rocks', 'a hoof-full of sunfire', 'her wings', 'a solar flare', 'a thousand star-devils', 'her forehooves'];
+
+function rnd(min, max) {
+	return Math.floor(Math.random() * max) + min;
+}
+
+function type1(){
+	return amplifiers[rnd(0, amplifiers.length)] + ' ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)] + ' me with ' + objects[rnd(0,objects.length)];
+}
+
+function type2(){
+	return 'Oh ' + verbs[rnd(0, verbs.length)] + ' me with ' + objects[rnd(0,objects.length)];
+}
+
+function type3(){
+	return verbs[rnd(0, verbs.length)] + ' on ' + objects[rnd(0,objects.length)] + ' and ' + verbs[rnd(0, verbs.length)];
+}
+
+function type4(){
+	return 'By ' + objects[rnd(0,objects.length)] + ' of ' + objects[rnd(0,objects.length)];
+}
+
+document.write('<h1>' + window['type' + rnd(1,4)]().trim() + '</h1>');
+</script>
