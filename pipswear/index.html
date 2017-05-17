@@ -1,80 +1,170 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+        body {
+
+        }
+
+        #profanity {
+            font-size: 40pt;
+            margin-top: 30px;
+        }
+
+        .pip-header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pip-swear-body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pip-header">
+            <img
+                    src="pip-header.png"
+                    width="300"
+                    onclick="createProfanity()">
+            <br>
+            <small>Click on Pip to generate a new profanity!</small>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 pip-swear-body">
+            <div id="profanity"></div>
+        </div>
+    </div>
+</div>
+
 <script>
-var amplifiers = ['', 'Great'];
-var names = ['Celestia', 'Luna', 'Godesses', 'Nightmare Moon'];
-var verbs = ['rape', 'fuck', 'sit on', 'lick', 'clop', 'spank', 'spin', 'shit'];
-var objects = ['her horn', 'the moon', 'moon rocks', 'sunfire', 'her wings', 'a solar flare', 'a thousand star-devils', 'her forehooves'];
-var personalObjects = ['clit', 'moonheat', 'libido', 'horn', 'wings', 'forehooves'];
-var quantifiers = ['a hoof-full of', ''];
-var adjectives = ['tidal', 'moaning', 'solar-flaring', 'solar-heated'];
+    function createVerb(verb, ing) {
+        return {
+            verb: verb,
+            ing: ing
+        };
+    }
 
-function rnd(min, max) {
-	return Math.floor(Math.random() * max) + min;
-}
+    var verbs = [
+        createVerb('rape', 'raping'),
+        createVerb('fuck', 'fucking'),
+        createVerb('sit', 'sitting'),
+        createVerb('lick', 'licking'),
+        createVerb('clop', 'clopping'),
+        createVerb('spank', 'spanking'),
+        createVerb('spin', 'spinning'),
+        createVerb('shit', 'shitting')
+    ];
 
-function type1(){
-	return amplifiers[rnd(0, amplifiers.length)] + ' ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)] + ' me with ' + objects[rnd(0,objects.length)] + '.';
-}
+    var amplifiers = ['', 'Great'];
+    var names = ['Celestia', 'Luna', 'Godesses', 'Nightmare Moon'];
+    var objects = ['her horn', 'the moon', 'moon rocks', 'sunfire', 'her wings', 'a solar flare', 'a thousand star-devils', 'her forehooves'];
 
-function type2(){
-    return names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)] + ' me like she loves me!';
-}
+    function createPersonalObject(singular, plural) {
+        return {
+            singular: singular,
+            plural: plural
+        }
+    }
 
-function type3(){
-    return names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)] + ' my ' + personalObjects[rnd(0,personalObjects.length)] + ' with ' + quantifiers[rnd(0,quantifiers.length)] + ' ' + objects[rnd(0,objects.length)] + '!';
-}
+    var personalObjects = [
+        createPersonalObject('clit', 'clits'),
+        createPersonalObject('moonheat', 'moonheats'),
+        createPersonalObject('libido', 'libido'),
+        createPersonalObject('horn', 'horns'),
+        createPersonalObject('wing', 'wings'),
+        createPersonalObject('forehoof', 'forehooves')
+    ];
 
-function type4(){
-    return names[rnd(0, names.length)] + '\'s ' + adjectives[rnd(0, adjectives.length)] + ' ' + personalObjects[rnd(0,personalObjects.length)] + '!';
-}
+    var quantifiers = ['a hoof-full of', ''];
+    var adjectives = ['tidal', 'moaning', 'solar-flaring', 'solar-heated'];
 
-function type5(){
-    return 'By the ' + personalObjects[rnd(0,personalObjects.length)] + ' of ' + names[rnd(0, names.length)] + '!';
-}
+    function rnd(min, max) {
+        return Math.floor(Math.random() * max) + min;
+    }
 
-function type6(){
-    return 'Holy hot sex with ' + names[rnd(0, names.length)] + '!';
-}
+    function type1() {
+        return amplifiers[rnd(0, amplifiers.length)] + ' ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)].verb + ' me with ' + objects[rnd(0, objects.length)] + '.';
+    }
 
-function type7(){
-    return 'Sit on my ' + personalObjects[rnd(0,personalObjects.length)] + ' and ' + verbs[rnd(0, verbs.length)] + '.';
-}
+    function type2() {
+        return names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)].verb + ' me like she loves me!';
+    }
 
-function type8(){
-    return names[rnd(0, names.length)] + '-' + verbs[rnd(0, verbs.length)] + 'ing orgasms!';
-}
+    function type3() {
+        return names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)].verb + ' my ' + personalObjects[rnd(0, personalObjects.length)].singular + ' with ' + quantifiers[rnd(0, quantifiers.length)] + ' ' + objects[rnd(0, objects.length)] + '!';
+    }
 
-function type9(){
-    return verbs[rnd(0, verbs.length)] + ' a ' + personalObjects[rnd(0,personalObjects.length)] + ' where ' + names[rnd(0, names.length)] + ' don\'t shine!';
-}
+    function type4() {
+        return names[rnd(0, names.length)] + '\'s ' + adjectives[rnd(0, adjectives.length)] + ' ' + personalObjects[rnd(0, personalObjects.length)].singular + '!';
+    }
 
-function type10(){
-    return verbs[rnd(0, verbs.length)] + 'ing orgasms of ' + names[rnd(0, names.length)] + '!';
-}
+    function type5() {
+        return 'By the ' + personalObjects[rnd(0, personalObjects.length)].singular + ' of ' + names[rnd(0, names.length)] + '!';
+    }
 
-function type11(){
-    // # Oh <verb, fuck> me with <name>'s <object>
-    return 'Oh ' + verbs[rnd(0, verbs.length)] + ' me with ' + names[rnd(0, names.length)] + '\s ' + personalObjects[rnd(0,personalObjects.length)] + '!';
-}
+    function type6() {
+        return 'Holy hot sex with ' + names[rnd(0, names.length)] + '!';
+    }
 
-function type12(){
-    // # Oh no. No. <name> <verb> me with <object>, no.
-    return 'Oh no. No. ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)] + ' me with ' + objects[rnd(0,objects.length)] + ', no.';
-}
+    function type7() {
+        return 'Sit on my ' + personalObjects[rnd(0, personalObjects.length)].singular + ' and ' + verbs[rnd(0, verbs.length)].verb + '.';
+    }
 
-var chosenType = rnd(1,12);
-document.write('<h1>' + window['type' + chosenType]().trim() + '</h1>');
-console.log(chosenType);
+    function type8() {
+        return names[rnd(0, names.length)] + '-' + verbs[rnd(0, verbs.length)].ing + ' orgasms!';
+    }
 
-console.log(type1());
-console.log(type2());
-console.log(type3());
-console.log(type4());
-console.log(type5());
-console.log(type6());
-console.log(type7());
-console.log(type8());
-console.log(type9());
-console.log(type10());
-console.log(type11());
-console.log(type12());
+    function type9() {
+        return verbs[rnd(0, verbs.length)].verb + ' a ' + personalObjects[rnd(0, personalObjects.length)].singular + ' where Celestia don\'t shine!';
+    }
+
+    function type10() {
+        return verbs[rnd(0, verbs.length)].ing + ' orgasms of ' + names[rnd(0, names.length)] + '!';
+    }
+
+    function type11() {
+        // # Oh <verb, fuck> me with <name>'s <object>
+        return 'Oh ' + verbs[rnd(0, verbs.length)].verb + ' me with ' + names[rnd(0, names.length)] + '\s ' + personalObjects[rnd(0, personalObjects.length)].singular + '!';
+    }
+
+    function type12() {
+        // # Oh no. No. <name> <verb> me with <object>, no.
+        return 'Oh no. No. ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)].verb + ' me with ' + objects[rnd(0, objects.length)] + ', no.';
+    }
+
+    function formatProfanity(profanity) {
+        var result = profanity.trim();
+        result = result.substr(0, 1).toLocaleUpperCase() + result.substr(1);
+        return result;
+    }
+
+    function createProfanity() {
+        var chosenType = rnd(1, 12);
+        document.getElementById('profanity').innerHTML = formatProfanity(window['type' + chosenType]());
+    }
+    createProfanity();
+
+//    console.log(type1());
+//    console.log(type2());
+//    console.log(type3());
+//    console.log(type4());
+//    console.log(type5());
+//    console.log(type6());
+//    console.log(type7());
+//    console.log(type8());
+//    console.log(type9());
+//    console.log(type10());
+//    console.log(type11());
+//    console.log(type12());
 </script>
+
+</body>
+</html>
+
