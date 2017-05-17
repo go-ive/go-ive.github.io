@@ -4,6 +4,10 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <style>
+        html, body {
+            height: 100%;
+        }
+
         #profanity {
             font-size: 40pt;
             margin-top: 30px;
@@ -14,30 +18,47 @@
             margin-top: 20px;
         }
 
+        .container {
+            height: 100%;
+        }
+
+        .wrapper {
+            min-height: 100%;
+            margin-bottom: -30px;
+        }
+
         .pip-swear-body {
+            text-align: center;
+        }
+
+        footer {
             text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 pip-header">
-            <img
-                    src="pip-header.png"
-                    width="300"
-                    onclick="createProfanity()"
-                    style="cursor: pointer">
-            <br>
-            <small>Click on Pip to generate a new profanity!</small>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-md-12 pip-header">
+                <img
+                        src="pip-header.png"
+                        width="300"
+                        onclick="createProfanity()"
+                        style="cursor: pointer">
+                <br>
+                <small>Click on Pip to generate a new profanity!</small>
+            </div>
+        </div>
+
+        <div class="row pip-row">
+            <div class="col-md-12 pip-swear-body">
+                <div id="profanity"></div>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12 pip-swear-body">
-            <div id="profanity"></div>
-        </div>
-    </div>
+    <footer>LittlePip Image by <a href="http://brisineo.deviantart.com/" target="_blank">Brisineo</a></footer>
 </div>
 
 <script>
