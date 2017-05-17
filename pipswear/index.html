@@ -80,53 +80,69 @@
         createPersonalObject('cunt', 'cunts')
     ];
 
-    var quantifiers = ['a hoof-full of', ''];
+    var quantifiers = ['', 'a hoof-full of', 'an army of', 'a mass of'];
     var adjectives = ['tidal', 'moaning', 'solar-flaring', 'solar-heated'];
 
     function rnd(min, max) {
         return Math.floor(Math.random() * max) + min;
     }
 
-    var types = [
-        function () {
-            return amplifiers[rnd(0, amplifiers.length)] + ' ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)].verb + ' me with ' + objects[rnd(0, objects.length)] + '.'
-        },
-        function () {
-            return names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)].verb + ' me like she loves me!';
-        },
-        function () {
-            return names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)].verb + ' my ' + personalObjects[rnd(0, personalObjects.length)].singular + ' with ' + quantifiers[rnd(0, quantifiers.length)] + ' ' + objects[rnd(0, objects.length)] + '!';
-        },
-        function () {
-            return names[rnd(0, names.length)] + '\'s ' + adjectives[rnd(0, adjectives.length)] + ' ' + personalObjects[rnd(0, personalObjects.length)].singular + '!';
-        },
-        function () {
-            return 'By the ' + personalObjects[rnd(0, personalObjects.length)].singular + ' of ' + names[rnd(0, names.length)] + '!';
-        },
-        function () {
-            return 'Holy hot sex with ' + names[rnd(0, names.length)] + '!';
-        },
-        function () {
-            return 'Sit on my ' + personalObjects[rnd(0, personalObjects.length)].singular + ' and ' + verbs[rnd(0, verbs.length)].verb + '.';
-        },
-        function () {
-            return names[rnd(0, names.length)] + '-' + verbs[rnd(0, verbs.length)].ing + ' orgasms!';
-        },
-        function () {
-            return verbs[rnd(0, verbs.length)].verb + ' a ' + personalObjects[rnd(0, personalObjects.length)].singular + ' where Celestia don\'t shine!';
-        },
-        function () {
-            return verbs[rnd(0, verbs.length)].ing + ' orgasms of ' + names[rnd(0, names.length)] + '!';
-        },
-        function () {
-            // # Oh <verb, fuck> me with <name>'s <object>
-            return 'Oh ' + verbs[rnd(0, verbs.length)].verb + ' me with ' + names[rnd(0, names.length)] + '\s ' + personalObjects[rnd(0, personalObjects.length)].singular + '!';
-        },
-        function () {
-            // # Oh no. No. <name> <verb> me with <object>, no.
-            return 'Oh no. No. ' + names[rnd(0, names.length)] + ' ' + verbs[rnd(0, verbs.length)].verb + ' me with ' + objects[rnd(0, objects.length)] + ', no.';
-        }
+    var typeTemplates = [
+        '#name #verb me like she loves me!',
+        '#name #verb my #personalObject!',
+        '#name #verb me with #object.',
+        '#name #verb my #personalObject with #quantifier #object.',
+        '#amplifier #name #verb me with #object.',
+        '#name\'s #adjective #personalObject!',
+        'By the #personalObject of #name!',
+        'Holy hot sex with #name!',
+        'Sit on my #personalObject and #verb.',
+        '#name-#verbing orgasms!',
+        '#verb a #personalObject where Celestia don\'t shine!',
+        '#verbing orgasms of #name!',
+        'Oh #verb me with #name\'s #personalObject!',
+        'Oh no. No. #name #verb me with #object, no.'
     ];
+
+    function generateProfanity() {
+        var chosenTemplate = typeTemplates[rnd(0, typeTemplates.length)];
+        console.log(chosenTemplate);
+
+        var iterations = 0;
+        var result = chosenTemplate;
+        while (result.indexOf('#') !== -1 && iterations < 30) {
+            result = chosenTemplate.replace(/#name/g, function () {
+                return names[rnd(0, names.length)];
+            });
+
+            result = result
+                .replace(/#verbing/g, function () {
+                    return verbs[rnd(0, verbs.length)].ing;
+                })
+                .replace(/#verb/g, function () {
+                    return verbs[rnd(0, verbs.length)].verb;
+                })
+                .replace(/#personalObject/g, function () {
+                    return personalObjects[rnd(0, personalObjects.length)].singular;
+                })
+                .replace(/#object/g, function () {
+                    return objects[rnd(0, objects.length)];
+                })
+                .replace(/#quantifier/g, function () {
+                    return quantifiers[rnd(0, quantifiers.length)];
+                })
+                .replace(/#amplifier/g, function () {
+                    return amplifiers[rnd(0, amplifiers.length)];
+                })
+                .replace(/#adjective/g, function () {
+                    return adjectives[rnd(0, adjectives.length)];
+                });
+
+            iterations++;
+        }
+
+        return result;
+    }
 
     function formatProfanity(profanity) {
         var result = profanity.trim();
@@ -135,7 +151,7 @@
     }
 
     function createProfanity() {
-        document.getElementById('profanity').innerHTML = formatProfanity(types[rnd(1, types.length)]());
+        document.getElementById('profanity').innerHTML = formatProfanity(generateProfanity());
     }
     createProfanity();
 </script>
