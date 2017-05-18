@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>LittlePip Profanity Generator</title>
+    <meta charset="utf-8">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -60,7 +61,11 @@
         </div>
     </div>
 
-    <footer>"LittlePip Profanity Generator" by go-ive. Image by <a href="http://brisineo.deviantart.com/" target="_blank">Brisineo</a>. Character "LittlePip" from "Fallout: Equestria" by Kkat.</footer>
+    <footer>
+        "LittlePip Profanity Generator" by go-ive.
+        Image by <a href="http://brisineo.deviantart.com/" target="_blank">Brisineo</a>.
+        Character "LittlePip" from "Fallout: Equestria" by Kkat.
+    </footer>
 </div>
 
 <script>
@@ -85,24 +90,10 @@
     var names = ['Celestia', 'Luna', 'Goddesses', 'Nightmare Moon'];
     var objects = ['her horn', 'the moon', 'moon rocks', 'sunfire', 'her wings', 'a solar flare', 'a thousand star-devils', 'her forehooves'];
 
-    function createPersonalObject(singular, plural) {
-        return {
-            singular: singular,
-            plural: plural
-        }
-    }
+    var bodyPartsSingle = ['clit', 'moonheat', 'libido', 'horn', 'cunt', 'hoof', 'mane', 'butt'];
+    var bodyPartsMulti = ['wings', 'forehooves', 'hooves'];
 
-    var personalObjects = [
-        createPersonalObject('clit', 'clits'),
-        createPersonalObject('moonheat', 'moonheats'),
-        createPersonalObject('libido', 'libido'),
-        createPersonalObject('horn', 'horns'),
-        createPersonalObject('wings', 'wings'),
-        createPersonalObject('forehoof', 'forehooves'),
-        createPersonalObject('cunt', 'cunts')
-    ];
-
-    var quantifiers = ['', 'a hoof-full of', 'an army of', 'a mass of'];
+    var quantifiers = ['', 'a hoof-full of', 'an army of', 'a mass of', 'a train car full of'];
     var adjectives = ['tidal', 'moaning', 'solar-flaring', 'solar-heated'];
 
     function rnd(min, max) {
@@ -111,25 +102,24 @@
 
     var typeTemplates = [
         '#name #verb me like she loves me!',
-        '#name #verb my #personalObject!',
-        '#name #verb my #personalObject with #quantifier #object.',
+        '#name #verb my #bodyPart!',
+        '#name #verb my #bodyPart with #quantifier #object.',
         '#amplifier #name #verb me with #object.',
-        '#name\'s #adjective #personalObject!',
-        'By the #personalObject of #name!',
+        '#name\'s #adjective #bodyPart!',
+        'By the #bodyPart of #name!',
         'Holy hot sex with #name!',
-        'Sit on my #personalObject and #verb.',
+        'Sit on my #bodyPart and #verb.',
         '#name-#verbing orgasms!',
-        '#verb a #personalObject where Celestia don\'t shine!',
+        '#verb a #bodyPartsSingle where Celestia don\'t shine!',
         '#verbing orgasms of #name!',
-        'Oh #verb me with #name\'s #personalObject!',
+        'Oh #verb me with #name\'s #bodyPart!',
         'Oh no. No. #name #verb me with #object, no.',
-        '#name shove my #personalObject full of #object and call me home.',
+        '#name shove my #bodyPart full of #object and call me home.',
         'Oh sweet #name\'s #adjective orgasms!'
     ];
 
     function generateProfanity() {
         var chosenTemplate = typeTemplates[rnd(0, typeTemplates.length)];
-        console.log(chosenTemplate);
 
         var iterations = 0;
         var result = chosenTemplate;
@@ -139,14 +129,22 @@
             });
 
             result = result
-                .replace(/#verbing/g, function () {
+                .replace(/#verb[a-zA-Z]*/g, function (match) {
+                    if (match === '#verb') {
+                        return verbs[rnd(0, verbs.length)].verb;
+                    }
                     return verbs[rnd(0, verbs.length)].ing;
                 })
-                .replace(/#verb/g, function () {
-                    return verbs[rnd(0, verbs.length)].verb;
-                })
-                .replace(/#personalObject/g, function () {
-                    return personalObjects[rnd(0, personalObjects.length)].singular;
+                .replace(/#bodyPart[a-zA-Z]*/g, function (match) {
+
+                    if (match === '#bodyPartsSingle') {
+                        return bodyPartsSingle[rnd(0, bodyPartsSingle.length)];
+                    } else if (match === '#bodyPartsMulti') {
+                        return bodyPartsMulti[rnd(0, bodyPartsMulti.length)];
+                    } else {
+                        var allBodyParts = bodyPartsSingle.concat(bodyPartsMulti);
+                        return allBodyParts[rnd(0, allBodyParts.length)];
+                    }
                 })
                 .replace(/#object/g, function () {
                     return objects[rnd(0, objects.length)];
